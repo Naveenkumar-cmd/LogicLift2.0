@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | LogicLift — Message Received</title>
+  <meta name="description" content="Thank you for reaching out to LogicLift. We've received your message and will respond within one business day.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://logiclift.in/thankyou">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <!--Favicons-->
+  <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="shortcut icon" href="../favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="manifest" href="../site.webmanifest" />
+
+  <style>
+    /* ── Thank You page-specific styles ── */
+
+    /* Full-page centered layout */
+    .thankyou-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Hero matches .page-hero from main.css exactly */
+    .thankyou-hero {
+      background: var(--gradient);
+      padding: calc(var(--nav-height) + 60px) 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .thankyou-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 30% 50%, rgba(0,200,150,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(0,200,255,0.08) 0%, transparent 50%);
+    }
+
+    .thankyou-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Animated checkmark ring */
+    .success-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      width: 96px;
+      height: 96px;
+      position: relative;
+    }
+
+    /* Outer spinning ring */
+    .spin-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--accent);
+      border-right-color: var(--accent);
+      animation: spin-ring 2.5s linear infinite;
+    }
+
+    @keyframes spin-ring {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Inner filled circle */
+    .check-circle {
+      width: 72px;
+      height: 72px;
+      background: var(--gradient-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 0 rgba(0,200,150,0.4);
+      animation: pop-scale 0.5s cubic-bezier(0.22,1,0.36,1) 0.1s both,
+                 pulse-shadow 2.5s ease-in-out 0.6s infinite;
+    }
+
+    @keyframes pop-scale {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulse-shadow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,150,0.35); }
+      50%       { box-shadow: 0 0 0 14px rgba(0,200,150,0); }
+    }
+
+    /* SVG checkmark draw-on animation */
+    .check-svg { width: 34px; height: 34px; }
+
+    .check-path {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: draw-check 0.45s ease 0.55s forwards;
+    }
+
+    @keyframes draw-check {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Hero badge (reuses .hero-badge from main.css) */
+    .thankyou-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,200,150,0.15);
+      border: 1px solid rgba(0,200,150,0.3);
+      color: var(--accent-light);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-family: var(--font-display);
+      animation: fadeInDown 0.6s ease 0.3s both;
+    }
+
+    .thankyou-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .thankyou-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      color: var(--white);
+      margin-bottom: 14px;
+      animation: fadeInUp 0.6s ease 0.4s both;
+    }
+
+    .thankyou-hero h1 .highlight { color: var(--accent); }
+
+    .thankyou-hero p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      animation: fadeInUp 0.6s ease 0.5s both;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease 0.6s both;
+    }
+
+    /* ── Teal accent bar (matches the one on contact.html) ── */
+    .accent-bar {
+      background: var(--accent);
+      padding: 30px 0;
+    }
+
+    .accent-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .accent-bar h3 {
+      color: var(--primary);
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .accent-bar p {
+      color: rgba(10,37,64,0.75);
+      font-size: 0.9rem;
+    }
+
+    /* ── Next steps section ── */
+    .next-steps-section {
+      background: var(--white);
+      flex: 1;
+    }
+
+    .next-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Steps list */
+    .steps-wrap { }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--gray-200);
+      position: relative;
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .step-item:last-child { border-bottom: none; }
+
+    .step-item:nth-child(1) { animation-delay: 0.1s; }
+    .step-item:nth-child(2) { animation-delay: 0.2s; }
+    .step-item:nth-child(3) { animation-delay: 0.3s; }
+
+    .step-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-dot {
+      width: 52px;
+      height: 52px;
+      background: var(--gradient-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--primary);
+      box-shadow: var(--shadow-accent);
+      flex-shrink: 0;
+    }
+
+    .step-connector {
+      width: 2px;
+      flex: 1;
+      min-height: 28px;
+      background: linear-gradient(180deg, var(--accent), rgba(0,200,150,0.1));
+      margin-top: 6px;
+    }
+
+    .step-item:last-child .step-connector { display: none; }
+
+    .step-content { padding-top: 12px; }
+
+    .step-content h4 {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-family: var(--font-display);
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    /* Right column — info card (reuses .contact-form-wrap style) */
+    .info-card-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .response-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      animation: fadeInRight 0.6s ease 0.3s both;
+    }
+
+    .response-card-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .response-card-sub {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .response-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .response-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .response-meta-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(0,200,150,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .response-meta-text h5 {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-family: var(--font-display);
+      font-weight: 600;
+      margin-bottom: 1px;
+    }
+
+    .response-meta-text p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+
+    /* Priority card (matches .why-card from main.css) */
+    .priority-card {
+      background: var(--gradient);
+      border-radius: var(--radius);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInRight 0.6s ease 0.45s both;
+    }
+
+    .priority-card::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 160px;
+      height: 160px;
+      background: rgba(0,200,150,0.1);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .priority-card-inner { position: relative; z-index: 1; }
+
+    .priority-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .priority-card p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    /* ── Redirect bar ── */
+    .redirect-strip {
+      background: var(--gray-100);
+      border-top: 1px solid var(--gray-200);
+      padding: 14px 0;
+      text-align: center;
+    }
+
+    .redirect-strip p {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      margin-bottom: 8px;
+    }
+
+    .redirect-strip p strong { color: var(--primary); }
+
+    .progress-bar-track {
+      width: 240px;
+      height: 3px;
+      background: var(--gray-200);
+      border-radius: 2px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+      animation: fill-progress 10s linear 0.5s forwards;
+    }
+
+    @keyframes fill-progress {
+      to { width: 100%; }
+    }
+
+    /* ── Keyframes carried from main.css conventions ── */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── Confetti ── */
+    .confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .next-steps-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-cta-row { flex-direction: column; align-items: center; }
+      .response-card { padding: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .thankyou-hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+
+<body class="thankyou-page">
+
+  <!-- ═══ NAVBAR (light-nav — same as contact.html) ═══ -->
+  <nav class="navbar light-nav-init scrolled light-nav" id="navbar">
+    <div class="container"><div class="nav-inner">
+      <a href="../index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 42 42" fill="none">
+          <rect width="42" height="42" rx="10" fill="#00C896"/>
+          <path d="M10 30L18 14L22 22L26 17L32 30H10Z" fill="#0A2540" opacity="0.9"/>
+          <circle cx="26" cy="13" r="4" fill="#0A2540" opacity="0.7"/>
+          <path d="M10 30H32" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text" style="color:var(--primary);">Logic<span>Lift</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html" target="_blank">About</a></li>
+        <li class="nav-dropdown">
+          <a href="services.html" target="_blank">Services ▾</a>
+          <div class="dropdown-menu">
+            <a href="service-crm.html" target="_blank"><span class="drop-icon">🎯</span> Zoho CRM Implementation</a>
+            <a href="service-books.html" target="_blank"><span class="drop-icon">📚</span> Zoho Books &amp; Finance</a>
+            <a href="service-automation.html" target="_blank"><span class="drop-icon">⚡</span> Workflow Automation</a>
+            <a href="service-analytics.html" target="_blank"><span class="drop-icon">📊</span> Zoho Analytics &amp; BI</a>
+            <a href="service-integration.html" target="_blank"><span class="drop-icon">🔗</span> Custom Integrations</a>
+            <a href="service-training.html" target="_blank"><span class="drop-icon">🎓</span> Training &amp; Support</a>
+          </div>
+        </li>
+        <li><a href="case-studies.html" target="_blank">Case Studies</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="https://calendly.com/ayush1999hzb/30min" target="_blank" class="btn btn-primary">📅 Book a Meeting</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div></div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="../index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="#" class="mobile-service-toggle">Services ▾</a>
+    <div class="mobile-submenu" style="display:none;">
+      <a href="service-crm.html" target="_blank">🎯 Zoho CRM</a>
+      <a href="service-books.html" target="_blank">📚 Zoho Books</a>
+      <a href="service-automation.html" target="_blank">⚡ Automation</a>
+    </div>
+    <a href="case-studies.html" target="_blank">Case Studies</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://calendly.com/ayush1999hzb/30min" target="_blank" style="color:#00C896;font-weight:700;">📅 Book a Meeting</a>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="thankyou-hero">
+    <div class="container">
+      <div class="thankyou-hero-content">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb" style="justify-content:center;">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="contact.html">Contact</a>
+          <span>/</span>
+          <span>Thank You</span>
+        </div>
+
+        <!-- Animated check icon -->
+        <div class="success-icon-wrap">
+          <div class="spin-ring"></div>
+          <div class="check-circle">
+            <svg class="check-svg" viewBox="0 0 34 34" fill="none">
+              <path
+                class="check-path"
+                d="M8 17.5L14 23.5L26 11"
+                stroke="#0A2540"
+                stroke-width="2.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Badge -->
+        <div class="thankyou-badge">
+          <span class="thankyou-badge-dot"></span>
+          Message Received
+        </div>
+
+        <!-- Headline -->
+        <h1>Thank You — We'll Be<br>in Touch <span class="highlight">Very Soon!</span></h1>
+
+        <!-- Subtext -->
+        <p>
+          Your message has landed safely with our team. A certified LogicLift consultant will
+          personally review your request and reach out within <strong style="color:var(--accent-light);">one business day.</strong>
+        </p>
+
+        <!-- CTAs -->
+        <div class="hero-cta-row">
+          <a href="https://calendly.com/ayush1999hzb/30min" target="_blank" class="btn btn-primary">
+            📅 Skip the Wait — Book a Call Now
+          </a>
+          <a href="../index.html" class="btn btn-outline">
+            ← Back to Home
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TEAL ACCENT BAR ═══ -->
+  <div class="accent-bar">
+    <div class="container">
+      <div class="accent-bar-inner">
+        <div>
+          <h3>Want a faster response?</h3>
+          <p>Book a free 30-minute Zoho consultation directly on Calendly — no waiting required.</p>
+        </div>
+        <a href="https://calendly.com/ayush1999hzb/30min" target="_blank" class="btn btn-dark" style="white-space:nowrap;">
+          📅 Book Your Free Call Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WHAT HAPPENS NEXT ═══ -->
+  <section class="section next-steps-section">
+    <div class="container">
+      <div class="next-steps-grid">
+
+        <!-- Left: Steps -->
+        <div class="steps-wrap reveal">
+          <div class="section-tag">What Happens Next</div>
+          <h2 class="section-title" style="text-align:left; font-size:2rem; margin-bottom:8px;">
+            Your Journey <span style="color:var(--accent);">Starts Here</span>
+          </h2>
+          <p style="color:var(--gray-600); font-size:0.95rem; margin-bottom:36px; line-height:1.7;">
+            Here's exactly what you can expect from us over the next 24–48 hours.
+          </p>
+
+          <div class="steps-list">
+
+            <div class="step-item">
+              <div class="step-dot-col">
+                <div class="step-dot">01</div>
+                <div class="step-connector"></div>
+              </div>
+              <div class="step-content">
+                <h4>We Review Your Message</h4>
+                <p>
+                  Our team reads every inquiry carefully — understanding your business, current tools,
+                  pain points, and goals before preparing a response.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-dot-col">
+                <div class="step-dot">02</div>
+                <div class="step-connector"></div>
+              </div>
+              <div class="step-content">
+                <h4>A Consultant Reaches Out Personally</h4>
+                <p>
+                  A certified Zoho expert — not a bot, not a generic reply — will contact you via
+                  email or phone to discuss your specific requirements.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-dot-col">
+                <div class="step-dot">03</div>
+                <div class="step-connector"></div>
+              </div>
+              <div class="step-content">
+                <h4>We Schedule Your Free Discovery Call</h4>
+                <p>
+                  We'll set up a focused 30-minute call to audit your current setup, map a clear
+                  Zoho roadmap, and answer every question you have — no commitment required.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Cards -->
+        <div class="info-card-wrap">
+
+          <!-- Response time card -->
+          <div class="response-card reveal">
+            <h3 class="response-card-title">What to Expect</h3>
+            <p class="response-card-sub">
+              We take every inquiry seriously. Here's our standard response commitment to every client.
+            </p>
+            <div class="response-meta">
+              <div class="response-meta-row">
+                <div class="response-meta-icon">⚡</div>
+                <div class="response-meta-text">
+                  <h5>Initial Reply</h5>
+                  <p>Within 4–8 business hours on working days</p>
+                </div>
+              </div>
+              <div class="response-meta-row">
+                <div class="response-meta-icon">📋</div>
+                <div class="response-meta-text">
+                  <h5>Full Assessment</h5>
+                  <p>Custom Zoho roadmap shared within 1 business day</p>
+                </div>
+              </div>
+              <div class="response-meta-row">
+                <div class="response-meta-icon">📞</div>
+                <div class="response-meta-text">
+                  <h5>Discovery Call</h5>
+                  <p>Scheduled within 2–3 business days at your convenience</p>
+                </div>
+              </div>
+              <div class="response-meta-row">
+                <div class="response-meta-icon">🚀</div>
+                <div class="response-meta-text">
+                  <h5>Project Kick-Off</h5>
+                  <p>Can begin within 5 business days of agreement</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Priority card (dark gradient — matches why-card style) -->
+          <div class="priority-card reveal">
+            <div class="priority-card-inner">
+              <h4>⚡ Need it Urgently?</h4>
+              <p>
+                For time-sensitive Zoho projects, ask about our priority engagement slots.
+                We can fast-track scoping and kick off your project within 48 hours.
+              </p>
+              <a href="https://calendly.com/ayush1999hzb/30min" target="_blank" class="btn btn-primary" style="font-size:0.9rem; padding:12px 22px;">
+                📅 Book Priority Slot
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REDIRECT STRIP ═══ -->
+  <div class="redirect-strip">
+    <p>Redirecting you to the homepage in <strong id="countdown">10</strong> seconds</p>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER (identical to all v1 pages) ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="../index.html" class="logo">
+              <svg class="logo-icon" viewBox="0 0 42 42" fill="none">
+                <rect width="42" height="42" rx="10" fill="#00C896"/>
+                <path d="M10 30L18 14L22 22L26 17L32 30H10Z" fill="#0A2540" opacity="0.9"/>
+                <circle cx="26" cy="13" r="4" fill="#0A2540" opacity="0.7"/>
+                <path d="M10 30H32" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span class="logo-text">Logic<span>Lift</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">India's trusted Zoho consulting partner. We help businesses implement, automate, and grow with the full Zoho ecosystem.</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="LinkedIn">in</a>
+            <a href="#" class="footer-social-link" aria-label="Twitter">𝕏</a>
+            <a href="#" class="footer-social-link" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="service-crm.html" target="_blank">Zoho CRM</a>
+          <a href="service-books.html" target="_blank">Zoho Books</a>
+          <a href="service-automation.html" target="_blank">Automation</a>
+          <a href="service-analytics.html" target="_blank">Analytics</a>
+          <a href="service-integration.html" target="_blank">Integrations</a>
+          <a href="service-training.html" target="_blank">Training</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html" target="_blank">About Us</a>
+          <a href="case-studies.html" target="_blank">Case Studies</a>
+          <a href="contact.html">Contact</a>
+          <a href="book.html" target="_blank">Book a Meeting</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Book a Meeting</h4>
+          <p class="footer-desc" style="margin-bottom:16px;">Ready to transform your business with Zoho? Schedule your free consultation.</p>
+          <a href="https://calendly.com/ayush1999hzb/30min" target="_blank" class="btn btn-primary" style="font-size:0.85rem; padding:12px 20px;">
+            📅 Book on Calendly
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p style="color:rgba(255,255,255,0.5);">© 2026 LogicLift. All rights reserved. Premier Zoho Consulting Partner.</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Confetti canvas -->
+  <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // ── Confetti burst on load ──
+    (function () {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#00C896', '#00FFB9', '#0A2540', '#1a4a7a', '#FF6B35', '#FFD700'];
+      const particles = [];
+      const count = 90;
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -200 - 10,
+          w: Math.random() * 9 + 5,
+          h: Math.random() * 5 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 2.5,
+          vy: Math.random() * 2.5 + 1.5,
+          rot: Math.random() * 360,
+          vrot: (Math.random() - 0.5) * 5,
+          alpha: 1
+        });
+      }
+
+      let frame = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vrot;
+          if (frame > 80) p.alpha -= 0.012;
+          if (p.alpha <= 0 || p.y > canvas.height + 20) return;
+          alive = true;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        frame++;
+        if (alive) requestAnimationFrame(draw);
+        else { ctx.clearRect(0, 0, canvas.width, canvas.height); canvas.style.display = 'none'; }
+      }
+
+      setTimeout(draw, 200);
+      window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    })();
+
+    // ── Countdown + redirect ──
+    (function () {
+      let secs = 10;
+      const el = document.getElementById('countdown');
+
+      const timer = setInterval(() => {
+        secs--;
+        if (secs <= 0) {
+          clearInterval(timer);
+          window.location.href = '../index.html';
+        } else {
+          if (el) el.textContent = secs;
+        }
+      }, 1000);
+
+      // Cancel on any interaction
+      document.addEventListener('click', function () {
+        clearInterval(timer);
+        const strip = document.querySelector('.redirect-strip');
+        if (strip) strip.style.display = 'none';
+      }, { once: true });
+    })();
+  </script>
+
+</body>
+</html>
