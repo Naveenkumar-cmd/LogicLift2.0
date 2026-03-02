@@ -1572,3 +1572,87 @@ ul { list-style: none; }
   .dashboard-metrics { grid-template-columns: repeat(3, 1fr); }
   .why-card-stats { grid-template-columns: repeat(2, 1fr); }
 }
+/* === Case Study Cards — Mobile Width Fix === */
+@media (max-width: 768px) {
+
+  /* Cards take full width with no overflow */
+  .case-study-card {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Header padding tighter */
+  .cs-header {
+    padding: 20px;
+  }
+
+  /* Body padding tighter */
+  .cs-body {
+    padding: 20px;
+  }
+
+  /* Metrics — shrink font so 3 columns still fit */
+  .cs-metric-value {
+    font-size: 1.1rem;
+  }
+
+  .cs-metric-label {
+    font-size: 0.68rem;
+  }
+
+  .cs-metric {
+    padding: 10px 6px;
+  }
+
+  /* Tags strip wraps cleanly */
+  .case-study-card [style*="display:flex"] {
+    flex-wrap: wrap;
+  }
+
+  /* integration tags smaller */
+  .integration-tag {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  /* Title smaller */
+  .cs-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Metrics stack to single column */
+  .cs-metrics {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .cs-header {
+    padding: 16px;
+  }
+
+  .cs-body {
+    padding: 16px;
+  }
+
+  .cs-title {
+    font-size: 1rem;
+  }
+
+  .cs-company {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 768px) {
+  .case-study-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Prevent ANY child from exceeding card width */
+  .case-study-card * {
+    max-width: 100%;
+    word-break: break-word;
+  }
+}
