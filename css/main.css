@@ -1550,6 +1550,20 @@ ul { list-style: none; }
   .section { padding: 60px 0; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+/* === Stats Banner === */
+.case-studies-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .case-studies-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .case-studies-stats { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
 
 @media (max-width: 480px) {
   .hero-actions { flex-direction: column; }
