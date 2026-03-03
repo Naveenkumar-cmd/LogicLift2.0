@@ -31,9 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
     });
 
-    // Close on link click
+    // Close on link click — but NOT on the services toggle
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
+        if (link.classList.contains('mobile-service-toggle')) return;
         hamburger.classList.remove('active');
         mobileNav.classList.remove('open');
         document.body.style.overflow = '';
